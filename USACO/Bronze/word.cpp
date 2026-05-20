@@ -1,5 +1,3 @@
-// Problem: Word Processor
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -7,38 +5,26 @@ int main()
 {
     freopen("word.in", "r", stdin);
     freopen("word.out", "w", stdout);
-
-    int N = 0, K = 0;
+    int N, K;
     cin >> N >> K;
 
-    cin.ignore();
-    string s = "";
-    getline(cin, s);
-    stringstream ss(s);
-    string word;
-    vector<string> words;
-    while (ss >> word)
-        words.push_back(word);
-
     int count = 0;
-    for (int i = 0; i < words.size(); i++)
+    for (int i = 0; i < N; i++)
     {
-        int size = words[i].length() + count;
-        if (size > K)
+        string word;
+        cin >> word;
+        if (count + word.length() <= K)
         {
-            if (words[i].length() <= K)
-                cout << words[i] << " ";
-            else
-                count = 0;
-        }
-        else if (size == K)
-        {
-            cout << words[i] << endl;
+            if (count > 0)
+                cout << " ";
+            cout << word;
+            count += word.length();
         }
         else
         {
-            cout << words[i] << " ";
-            count += words[i].length();
+            cout << "\n"
+                 << word;
+            count = word.length();
         }
     }
 
